@@ -1,0 +1,13 @@
+{
+  "name": "peanut_gb",
+  "version": "1.0.0",
+  "description": "Peanut-GB Game Boy emulator core (header-only)",
+  "keywords": "gameboy, emulator, gb, stm32",
+  "license": "MIT",
+  "frameworks": "stm32cube",
+  "platforms": "ststm32",
+  "build": {
+    "srcDir": "src",
+    "includeDir": "include"
+  }
+}
