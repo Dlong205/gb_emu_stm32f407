@@ -75,13 +75,8 @@
 #endif
 
 /** Definitions for compile-time setting of features. **/
-/**
- * Sound support must be provided by an external library. When audio_read() and
- * audio_write() functions are provided, define ENABLE_SOUND to a non-zero value
- * before including peanut_gb.h in order for these functions to be used.
- */
 #ifndef ENABLE_SOUND
-# define ENABLE_SOUND 0
+# define ENABLE_SOUND 1
 #endif
 
 /* Enable LCD drawing. On by default. May be turned off for testing purposes. */

@@ -23,6 +23,23 @@ static void ILI9341_WriteBuffer(uint8_t *data, uint32_t len) {
     CS_HIGH();
 }
 
+volatile uint8_t spi_dma_cplt = 1;
+
+void ILI9341_WriteBuffer_DMA(uint8_t *data, uint32_t len) {
+    spi_dma_cplt = 0;
+    DC_DATA();
+    CS_LOW();
+    HAL_SPI_Transmit_DMA(ili9341_hspi, data, len);
+}
+
+// Hàm callback khi DMA truyền xong
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi) {
+    if (hspi == ili9341_hspi) {
+        CS_HIGH();
+        spi_dma_cplt = 1;
+    }
+}
+
 void ILI9341_Init(SPI_HandleTypeDef *hspi) {
     ili9341_hspi = hspi;
 

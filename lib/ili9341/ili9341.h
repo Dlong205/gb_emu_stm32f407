@@ -14,16 +14,16 @@
 #define COLOR_GREEN       0x07E0
 #define COLOR_BLUE        0x001F
 
-// Cấu hình các chân điều khiển (Sửa theo Pinout đã chốt)
-// CS: PA4, DC: PA2, RST: PA1
-#define ILI9341_CS_PORT   GPIOA
-#define ILI9341_CS_PIN    GPIO_PIN_4
+// Cấu hình các chân điều khiển (Sửa theo Pinout mới)
+// CS: PB12, DC: PB14, RST: PB10
+#define ILI9341_CS_PORT   GPIOB
+#define ILI9341_CS_PIN    GPIO_PIN_12
 
-#define ILI9341_DC_PORT   GPIOA
-#define ILI9341_DC_PIN    GPIO_PIN_2
+#define ILI9341_DC_PORT   GPIOB
+#define ILI9341_DC_PIN    GPIO_PIN_14
 
-#define ILI9341_RST_PORT  GPIOA
-#define ILI9341_RST_PIN   GPIO_PIN_1
+#define ILI9341_RST_PORT  GPIOB
+#define ILI9341_RST_PIN   GPIO_PIN_10
 
 // Macros điều khiển chân
 #define CS_LOW()      HAL_GPIO_WritePin(ILI9341_CS_PORT, ILI9341_CS_PIN, GPIO_PIN_RESET)
@@ -41,4 +41,7 @@ void ILI9341_SetWindow(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 void ILI9341_DrawBitmap(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t *bitmap);
 void ILI9341_FillScreen(uint16_t color);
 
-#endif
+extern volatile uint8_t spi_dma_cplt;
+void ILI9341_WriteBuffer_DMA(uint8_t *data, uint32_t len);
+
+#endif // ILI9341_H
